@@ -15,7 +15,7 @@ pipeline {
     BUILDS_DISCORD=credentials('build_webhook_url')
     GITHUB_TOKEN=credentials('github_token')
     EXT_GIT_BRANCH = 'master'
-    EXT_USER = 'hydazz '
+    EXT_USER = 'hydazz'
     EXT_REPO = 'TeslaCamPlayer'
     BUILD_VERSION_ARG = 'TESLACAMPLAYER_VERSION'
     IG_USER = 'imagegenius'
