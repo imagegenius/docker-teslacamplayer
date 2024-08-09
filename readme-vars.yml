@@ -1,7 +1,7 @@
 ---
 
 # project information
-project_name: teslacamviewer
+project_name: teslacamplayer
 project_url: "https://github.com/hydazz/TeslaCamPlayer"
 project_logo: ""
 project_blurb: "A Blazor WASM application for easily viewing locally stored Tesla sentry & dashcam videos."

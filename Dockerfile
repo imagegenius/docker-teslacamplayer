@@ -16,9 +16,9 @@ RUN \
   npm install -g gulp && \
   gulp default && \
   rm -rf /tmp/build/lib && \
-  mkdir -p /out/app/teslacamviewer/wwwroot && \
-  cp -r /tmp/build/* /out/app/teslacamviewer/ && \
-  cp -r wwwroot/css/ /out/app/teslacamviewer/wwwroot/css/
+  mkdir -p /out/app/teslacamplayer/wwwroot && \
+  cp -r /tmp/build/* /out/app/teslacamplayer/ && \
+  cp -r wwwroot/css/ /out/app/teslacamplayer/wwwroot/css/
 
 # runtime
 FROM ghcr.io/imagegenius/baseimage-alpine:3.20
