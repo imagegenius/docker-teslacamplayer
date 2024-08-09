@@ -1,0 +1,25 @@
+---
+
+# jenkins variables
+project_name: docker-teslacamplayer
+external_type: github_commit
+release_type: stable
+release_tag: latest
+ig_branch: main
+repo_vars:
+  - EXT_GIT_BRANCH = 'master'
+  - EXT_USER = 'hydazz '
+  - EXT_REPO = 'TeslaCamPlayer'
+  - BUILD_VERSION_ARG = 'TESLACAMPLAYER_VERSION'
+  - IG_USER = 'imagegenius'
+  - IG_REPO = 'docker-teslacamplayer'
+  - CONTAINER_NAME = 'teslacamplayer'
+  - DIST_IMAGE = 'alpine'
+  - MULTIARCH = 'false'
+  - CI = 'true'
+  - CI_WEB = 'true'
+  - CI_PORT = '5000'
+  - CI_SSL = 'false'
+  - CI_DOCKERENV = ''
+  - CI_AUTH = ''
+  - CI_WEBPATH = ''
