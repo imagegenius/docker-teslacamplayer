@@ -403,14 +403,14 @@ pipeline {
         sh "docker buildx build \
           --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
           --label \"org.opencontainers.image.authors=imagegenius.io\" \
-          --label \"org.opencontainers.image.url=https://github.com/imagegenius/docker-teslacamviewer/packages\" \
-          --label \"org.opencontainers.image.source=https://github.com/imagegenius/docker-teslacamviewer\" \
+          --label \"org.opencontainers.image.url=https://github.com/imagegenius/docker-teslacamplayer/packages\" \
+          --label \"org.opencontainers.image.source=https://github.com/imagegenius/docker-teslacamplayer\" \
           --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ig${IG_TAG_NUMBER}\" \
           --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
           --label \"org.opencontainers.image.vendor=imagegenius.io\" \
           --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
           --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-          --label \"org.opencontainers.image.title=Teslacamviewer\" \
+          --label \"org.opencontainers.image.title=Teslacamplayer\" \
           --label \"org.opencontainers.image.description=A Blazor WASM application for easily viewing locally stored Tesla sentry & dashcam videos.\" \
           --no-cache --pull -t ${GITHUBIMAGE}:${META_TAG} --platform=linux/amd64 \
           --provenance=false --sbom=false \
@@ -433,14 +433,14 @@ pipeline {
             sh "docker buildx build \
               --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
               --label \"org.opencontainers.image.authors=imagegenius.io\" \
-              --label \"org.opencontainers.image.url=https://github.com/imagegenius/docker-teslacamviewer/packages\" \
-              --label \"org.opencontainers.image.source=https://github.com/imagegenius/docker-teslacamviewer\" \
+              --label \"org.opencontainers.image.url=https://github.com/imagegenius/docker-teslacamplayer/packages\" \
+              --label \"org.opencontainers.image.source=https://github.com/imagegenius/docker-teslacamplayer\" \
               --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ig${IG_TAG_NUMBER}\" \
               --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.vendor=imagegenius.io\" \
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-              --label \"org.opencontainers.image.title=Teslacamviewer\" \
+              --label \"org.opencontainers.image.title=Teslacamplayer\" \
               --label \"org.opencontainers.image.description=A Blazor WASM application for easily viewing locally stored Tesla sentry & dashcam videos.\" \
               --no-cache --pull -t ${GITHUBIMAGE}:amd64-${META_TAG} --platform=linux/amd64 \
               --provenance=false --sbom=false \
@@ -460,14 +460,14 @@ pipeline {
             sh "docker buildx build \
               --label \"org.opencontainers.image.created=${GITHUB_DATE}\" \
               --label \"org.opencontainers.image.authors=imagegenius.io\" \
-              --label \"org.opencontainers.image.url=https://github.com/imagegenius/docker-teslacamviewer/packages\" \
-              --label \"org.opencontainers.image.source=https://github.com/imagegenius/docker-teslacamviewer\" \
+              --label \"org.opencontainers.image.url=https://github.com/imagegenius/docker-teslacamplayer/packages\" \
+              --label \"org.opencontainers.image.source=https://github.com/imagegenius/docker-teslacamplayer\" \
               --label \"org.opencontainers.image.version=${EXT_RELEASE_CLEAN}-ig${IG_TAG_NUMBER}\" \
               --label \"org.opencontainers.image.revision=${COMMIT_SHA}\" \
               --label \"org.opencontainers.image.vendor=imagegenius.io\" \
               --label \"org.opencontainers.image.licenses=GPL-3.0-only\" \
               --label \"org.opencontainers.image.ref.name=${COMMIT_SHA}\" \
-              --label \"org.opencontainers.image.title=Teslacamviewer\" \
+              --label \"org.opencontainers.image.title=Teslacamplayer\" \
               --label \"org.opencontainers.image.description=A Blazor WASM application for easily viewing locally stored Tesla sentry & dashcam videos.\" \
               --no-cache --pull -f Dockerfile.aarch64 -t ${GITHUBIMAGE}:arm64v8-${META_TAG} --platform=linux/arm64 \
               --provenance=false --sbom=false \
