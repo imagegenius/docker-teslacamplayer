@@ -48,6 +48,7 @@ services:
       - TZ=Etc/UTC
     volumes:
       - path_to_appdata:/config
+      - path_to_teslacam:/media
     ports:
       - 5000:5000
     restart: unless-stopped
@@ -63,6 +64,7 @@ docker run -d \
   -e TZ=Etc/UTC \
   -p 5000:5000 \
   -v path_to_appdata:/config \
+  -v path_to_teslacam:/media \
   --restart unless-stopped \
   ghcr.io/imagegenius/teslacamplayer:latest
 ```
@@ -78,6 +80,7 @@ To configure the container, pass variables at runtime using the format `<externa
 | `-e PGID=1000` | GID for permissions - see below for explanation |
 | `-e TZ=Etc/UTC` | Specify a timezone to use, see this [list](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones#List). |
 | `-v /config` | Appdata Path |
+| `-v /media` | Path to your 'TeslaCAM' folder |
 
 ## Umask for running applications
 
