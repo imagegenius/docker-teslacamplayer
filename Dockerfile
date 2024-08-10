@@ -1,14 +1,27 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine as builder
 
-RUN git clone https://github.com/hydazz/TeslaCamPlayer /tmp/TeslaCamPlayer
-
-WORKDIR /tmp/TeslaCamPlayer/src/TeslaCamPlayer.BlazorHosted
+# set version label
+ARG TESLACAMPLAYER_VERSION
 
 RUN \
   apk add --no-cache \
     nodejs \
-    npm && \
-  cd Server && \
+    npm \
+    jq && \
+  echo "**** download TeslaCamPlayer ****" && \
+  mkdir -p \
+    /tmp/TeslaCamPlayer && \
+  if [ -z ${TESLACAMPLAYER_VERSION} ]; then \
+  TESLACAMPLAYER_VERSION=$(curl -sL https://api.github.com/repos/hydazz/TeslaCamPlayer/releases/latest | \
+      jq -r '.tag_name'); \
+  fi && \
+  curl -o \
+    /tmp/TeslaCamPlayer.tar.gz -L \
+    "https://github.com/hydazz/TeslaCamPlayer/archive/${TESLACAMPLAYER_VERSION}.tar.gz" && \
+  tar xf \
+    /tmp/TeslaCamPlayer.tar.gz -C \
+    /tmp/TeslaCamPlayer --strip-components=1 && \
+  cd /tmp/TeslaCamPlayer/src/TeslaCamPlayer.BlazorHosted/Server && \
   dotnet restore . -r linux-musl-x64 && \
   dotnet publish *.csproj -c Release -o /tmp/build --no-restore --self-contained true -r linux-musl-x64 /p:PublishTrimmed=true /p:DefineConstants=DOCKER && \
   cd ../Client && \
@@ -26,7 +39,6 @@ FROM ghcr.io/imagegenius/baseimage-alpine:3.20
 # set version label
 ARG BUILD_DATE
 ARG VERSION
-ARG TESLACAMPLAYER_VERSION
 LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}"
 LABEL maintainer="hydazz"
 
