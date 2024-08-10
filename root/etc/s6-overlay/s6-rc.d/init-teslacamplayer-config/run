@@ -1,10 +1,10 @@
 #!/usr/bin/with-contenv bash
 # shellcheck shell=bash
 
-mkdir -p /media/{SavedClips,SentryClips}
+mkdir -p \
+    /media/{SavedClips,SentryClips,RecentClips} &>/dev/null # just so the app starts without errors
 
 # permissions
 lsiown -R abc:abc \
     /config \
-	/app \
-	/media
+	/app

@@ -31,11 +31,9 @@ LABEL build_version="ImageGenius Version:- ${VERSION} Build-date:- ${BUILD_DATE}
 LABEL maintainer="hydazz"
 
 # environment settings
-ENV ClipsRootPath=/media
-ENV ASPNETCORE_URLS=http://+:5000
-ENV HOME=/config
-
-COPY --from=builder /out/ /
+ENV ClipsRootPath=/media \
+  CacheFilePath=/config/clips.json \
+  ASPNETCORE_URLS=http://+:5000
 
 RUN \
   echo "**** install packages ****" && \
@@ -45,6 +43,8 @@ RUN \
   echo "**** cleanup ****" && \
   rm -rf \
     /tmp/*
+
+COPY --from=builder /out/ /
 
 # copy local files
 COPY root/ /
