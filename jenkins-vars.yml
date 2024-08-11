@@ -15,7 +15,7 @@ repo_vars:
   - IG_REPO = 'docker-teslacamplayer'
   - CONTAINER_NAME = 'teslacamplayer'
   - DIST_IMAGE = 'alpine'
-  - MULTIARCH = 'false'
+  - MULTIARCH = 'true'
   - CI = 'true'
   - CI_WEB = 'true'
   - CI_PORT = '5000'

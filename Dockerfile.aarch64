@@ -24,7 +24,7 @@ RUN \
   cd /tmp/TeslaCamPlayer/src/TeslaCamPlayer.BlazorHosted/Server && \
   sed -i'' -e "s/<AssemblyVersion>[0-9.*]\+<\/AssemblyVersion>/<AssemblyVersion>${TESLACAMPLAYER_VERSION}<\/AssemblyVersion>/g" TeslaCamPlayer.BlazorHosted.Server.csproj && \
   dotnet restore && \
-  dotnet publish -c Release -o /tmp/build --no-restore --self-contained true -r linux-musl-x64 /p:PublishTrimmed=true /p:DefineConstants=DOCKER && \
+  dotnet publish -c Release -o /tmp/build --no-restore --self-contained true -r linux-arm64 /p:PublishTrimmed=true /p:DefineConstants=DOCKER && \
   cd ../Client && \
   npm install && \
   npm install -g gulp && \
@@ -35,7 +35,7 @@ RUN \
   cp -r wwwroot/css/ /out/app/teslacamplayer/wwwroot/css/
 
 # runtime
-FROM ghcr.io/imagegenius/baseimage-alpine:3.20
+FROM ghcr.io/imagegenius/baseimage-ubuntu:arm64v8-noble
 
 # set version label
 ARG BUILD_DATE
@@ -50,12 +50,16 @@ ENV ClipsRootPath=/media \
 
 RUN \
   echo "**** install packages ****" && \
-  apk add -U --upgrade --no-cache \
-  	icu-libs \
+  apt-get update && \
+  apt-get install -y \
     ffmpeg && \
   echo "**** cleanup ****" && \
+  apt-get autoremove -y && \
+  apt-get clean && \
   rm -rf \
-    /tmp/*
+    /tmp/* \
+    /var/lib/apt/lists/* \
+    /var/tmp/*
 
 COPY --from=builder /out/ /
 
