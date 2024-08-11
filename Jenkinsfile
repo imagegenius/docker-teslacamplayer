@@ -22,7 +22,7 @@ pipeline {
     IG_REPO = 'docker-teslacamplayer'
     CONTAINER_NAME = 'teslacamplayer'
     DIST_IMAGE = 'alpine'
-    MULTIARCH = 'false'
+    MULTIARCH = 'true'
     CI = 'true'
     CI_WEB = 'true'
     CI_PORT = '5000'
@@ -343,6 +343,37 @@ pipeline {
                 echo "No templates to update"
               fi
               echo "Starting Stage 4 - External repo update: Unraid Template"
+              mkdir -p ${TEMPDIR}/unraid
+              git clone https://github.com/imagegenius/templates.git ${TEMPDIR}/unraid/templates
+              if [[ -f ${TEMPDIR}/unraid/templates/unraid/img/${CONTAINER_NAME}.png ]]; then
+                sed -i "s|main/unraid/img/default.png|main/unraid/img/${CONTAINER_NAME}.png|" ${TEMPDIR}/docker-${CONTAINER_NAME}/.jenkins-external/${CONTAINER_NAME}.xml
+              fi
+              if [[ "${BRANCH_NAME}" == "${GH_DEFAULT_BRANCH}" ]] && [[ (! -f ${TEMPDIR}/unraid/templates/unraid/${CONTAINER_NAME}.xml) || ("$(md5sum ${TEMPDIR}/unraid/templates/unraid/${CONTAINER_NAME}.xml | awk '{ print $1 }')" != "$(md5sum ${TEMPDIR}/docker-${CONTAINER_NAME}/.jenkins-external/${CONTAINER_NAME}.xml | awk '{ print $1 }')") ]]; then
+                echo "Updating Unraid template"
+                cd ${TEMPDIR}/unraid/templates/
+                GH_TEMPLATES_DEFAULT_BRANCH=$(git remote show origin | grep "HEAD branch:" | sed 's|.*HEAD branch: ||')
+                if grep -wq "${CONTAINER_NAME}" ${TEMPDIR}/unraid/templates/unraid/ignore.list && [[ -f ${TEMPDIR}/unraid/templates/unraid/deprecated/${CONTAINER_NAME}.xml ]]; then
+                  echo "Image is on the ignore list, and already in the deprecation folder."
+                elif grep -wq "${CONTAINER_NAME}" ${TEMPDIR}/unraid/templates/unraid/ignore.list; then
+                  echo "Image is on the ignore list, marking Unraid template as deprecated"
+                  cp ${TEMPDIR}/docker-${CONTAINER_NAME}/.jenkins-external/${CONTAINER_NAME}.xml ${TEMPDIR}/unraid/templates/unraid/
+                  git add -u unraid/${CONTAINER_NAME}.xml
+                  git mv unraid/${CONTAINER_NAME}.xml unraid/deprecated/${CONTAINER_NAME}.xml || :
+                  git commit -m 'Bot Moving Deprecated Unraid Template' || :
+                else
+                  cp ${TEMPDIR}/docker-${CONTAINER_NAME}/.jenkins-external/${CONTAINER_NAME}.xml ${TEMPDIR}/unraid/templates/unraid/
+                  git add unraid/${CONTAINER_NAME}.xml
+                  git commit -m 'Bot Updating Unraid Template'
+                fi
+                git pull https://ImageGeniusCI:${GITHUB_TOKEN}@github.com/imagegenius/templates.git ${GH_TEMPLATES_DEFAULT_BRANCH} --rebase
+                git push https://ImageGeniusCI:${GITHUB_TOKEN}@github.com/imagegenius/templates.git ${GH_TEMPLATES_DEFAULT_BRANCH} || \
+                  (MAXWAIT="10" && echo "Push to unraid templates failed, trying again in ${MAXWAIT} seconds" && \
+                  sleep $((RANDOM % MAXWAIT)) && \
+                  git pull https://ImageGeniusCI:${GITHUB_TOKEN}@github.com/imagegenius/templates.git ${GH_TEMPLATES_DEFAULT_BRANCH} --rebase && \
+                  git push https://ImageGeniusCI:${GITHUB_TOKEN}@github.com/imagegenius/templates.git ${GH_TEMPLATES_DEFAULT_BRANCH})
+              else
+                echo "No updates to Unraid template needed, skipping"
+              fi
               rm -Rf ${TEMPDIR}'''
         script{
           env.FILES_UPDATED = sh(
