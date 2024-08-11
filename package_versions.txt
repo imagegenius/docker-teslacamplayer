@@ -323,7 +323,7 @@ System.Xml.XPath.XDocument                                  8.0.724.31311       
 System.Xml.XmlDocument                                      8.0.724.31311                                        dotnet                  
 System.Xml.XmlSerializer                                    8.0.724.31311                                        dotnet                  
 TeslaCamPlayer.BlazorHosted.Client                          1.0.0.0                                              dotnet                  
-TeslaCamPlayer.BlazorHosted.Server                          1.0.0.0                                              dotnet                  
+TeslaCamPlayer.BlazorHosted.Server                          2024.8.11.923                                        dotnet                  
 TeslaCamPlayer.BlazorHosted.Shared                          1.0.0.0                                              dotnet                  
 WindowsBase                                                 8.0.724.31311                                        dotnet                  
 alpine-baselayout                                           3.6.5-r0                                             apk                     
