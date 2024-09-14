@@ -329,7 +329,7 @@ WindowsBase                                                 8.0.824.36612       
 alpine-baselayout                                           3.6.5-r0                                             apk                     
 alpine-baselayout-data                                      3.6.5-r0                                             apk                     
 alpine-keys                                                 2.4-r1                                               apk                     
-alpine-release                                              3.20.2-r0                                            apk                     
+alpine-release                                              3.20.3-r0                                            apk                     
 alsa-lib                                                    1.2.11-r0                                            apk                     
 aom-libs                                                    3.9.1-r0                                             apk                     
 apk-tools                                                   2.14.4-r0                                            apk                     
@@ -369,7 +369,7 @@ harfbuzz                                                    8.5.0-r0            
 hwdata-pci                                                  0.382-r0                                             apk                     
 icu-data-en                                                 74.2-r0                                              apk                     
 icu-libs                                                    74.2-r0                                              apk                     
-imath                                                       3.1.11-r2                                            apk                     
+imath                                                       3.1.12-r0                                            apk                     
 jq                                                          1.7.1-r0                                             apk                     
 lame-libs                                                   3.100-r5                                             apk                     
 lcms2                                                       2.16-r0                                              apk                     
@@ -453,7 +453,7 @@ openexr-libiex                                              3.1.13-r1           
 openexr-libilmthread                                        3.1.13-r1                                            apk                     
 openexr-libopenexr                                          3.1.13-r1                                            apk                     
 opus                                                        1.5.2-r0                                             apk                     
-orc                                                         0.4.37-r0                                            apk                     
+orc                                                         0.4.39-r0                                            apk                     
 pcre2                                                       10.43-r0                                             apk                     
 procps-ng                                                   4.0.4-r0                                             apk                     
 rav1e-libs                                                  0.7.1-r0                                             apk                     
@@ -472,7 +472,7 @@ sratom                                                      0.6.16-r0           
 ssl_client                                                  1.36.1-r29                                           apk                     
 tdb-libs                                                    1.4.9-r1                                             apk                     
 teslacamplayer                                              1.0.0                                                npm                     
-tzdata                                                      2024a-r1                                             apk                     
+tzdata                                                      2024b-r0                                             apk                     
 utmps-libs                                                  0.1.2.2-r1                                           apk                     
 v4l-utils-libs                                              1.24.1-r1                                            apk                     
 vidstab                                                     1.1.1-r0                                             apk                     
