@@ -362,7 +362,7 @@ fontconfig                                                  2.15.0-r1           
 freetype                                                    2.13.2-r0                                            apk                     
 fribidi                                                     1.0.15-r0                                            apk                     
 giflib                                                      5.2.2-r0                                             apk                     
-glib                                                        2.80.4-r0                                            apk                     
+glib                                                        2.80.5-r0                                            apk                     
 glslang-libs                                                1.3.261.1-r0                                         apk                     
 graphite2                                                   1.3.14-r6                                            apk                     
 harfbuzz                                                    8.5.0-r0                                             apk                     
@@ -406,7 +406,7 @@ libogg                                                      1.3.5-r5            
 libopenmpt                                                  0.7.7-r0                                             apk                     
 libpciaccess                                                0.18.1-r0                                            apk                     
 libplacebo                                                  6.338.2-r1                                           apk                     
-libpng                                                      1.6.43-r0                                            apk                     
+libpng                                                      1.6.44-r0                                            apk                     
 libproc2                                                    4.0.4-r0                                             apk                     
 libpsl                                                      0.21.5-r1                                            apk                     
 libpulse                                                    17.0-r0                                              apk                     
